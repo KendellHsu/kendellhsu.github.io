@@ -12,7 +12,7 @@ profile:
     <a href="/cv/">CV</a> / <a href="mailto:kendellhsu@gmail.com">Email</a> / <a href="https://www.linkedin.com/in/kendell-hsu-a9a192343/">LinkedIn</a>
 
 selected_papers: false # includes a list of papers marked as "selected={true}"
-social: false # includes social icons at the bottom of the page
+social: true # includes social icons at the bottom of the page
 
 announcements:
   enabled: false # includes a list of news items
@@ -26,7 +26,7 @@ latest_posts:
 ---
 I'm a fourth-year Engineering Science undergraduate student at Natioanl Cheng Kung University.
 
-My favorite stuff is to be a maker, 
+
 
 My research in the Human Computer Integration Lab, where I am advised by Pedro Lopes, focuses on sensing, wearables, and designing interfaces that utilize body movements for both input and output by combining gesture sensing with muscle stimulation.
 
