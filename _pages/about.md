@@ -9,7 +9,7 @@ profile:
   image: prof_pic.jpg
   image_circular: true # crops the image to make it circular
   more_info: >
-    <a href="/cv/">CV</a> / <a href="mailto:kendellhsu@gmail.com">Email</a> / <a href="https://www.linkedin.com/in/kendell-hsu-a9a192343/">LinkedIn</a>
+    <a href="assets/pdf/CV.pdf">CV</a> / <a href="mailto:kendellhsu@gmail.com">Email</a> / <a href="https://www.linkedin.com/in/kendell-hsu-a9a192343/">LinkedIn</a>
 
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: false # includes social icons at the bottom of the page
