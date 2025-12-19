@@ -2,7 +2,7 @@
 layout: page
 title: LightPOV
 description: Wireless IoT LED Performance System
-img: assets/img/LightPOV.jpg
+img: assets/img/LightPOV/LightPOV_cover.JPG
 importance: 1
 category: maker
 ---
