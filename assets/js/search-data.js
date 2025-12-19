@@ -395,46 +395,26 @@ ninja.data = [{
             },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
           title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
           description: "",
-          section: "News",},{id: "projects-lux",
-          title: 'Lux',
-          description: "A perfomance item controll WS2812B with ESP32S3",
+          section: "News",},{id: "projects-handmade-bar-stool",
+          title: 'Handmade Bar Stool',
+          description: "a bar stool made with pine wood",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/1_project/";
+              window.location.href = "/projects/Handmade%20Bar%20Stool/";
+            },},{id: "projects-lightmr",
+          title: 'LightMR',
+          description: "",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/LightMR/";
+            },},{id: "projects-lightpov",
+          title: 'LightPOV',
+          description: "Wireless IoT LED Performance System",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/LightPOV/";
             },},{id: "projects-tasujin",
           title: 'Tasujin',
-          description: "a project with a background image and giscus comments",
+          description: "Implemented a Tatsujin game clone on a PYNQ-Z2 FPGA using an LED matrix and Verilog.",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/2_project/";
-            },},{id: "projects-project-3-with-very-long-name",
-          title: 'project 3 with very long name',
-          description: "a project that redirects to another website",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/3_project/";
-            },},{id: "projects-project-4",
-          title: 'project 4',
-          description: "another without an image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/4_project/";
-            },},{id: "projects-project-5",
-          title: 'project 5',
-          description: "a project with a background image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/5_project/";
-            },},{id: "projects-project-6",
-          title: 'project 6',
-          description: "a project with no image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/6_project/";
-            },},{id: "projects-project-7",
-          title: 'project 7',
-          description: "with background image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/7_project/";
-            },},{id: "projects-project-8",
-          title: 'project 8',
-          description: "an other project with a background image and giscus comments",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/8_project/";
+              window.location.href = "/projects/Tatsujin/";
             },},{
         id: 'social-cv',
         title: 'CV',
