@@ -26,10 +26,8 @@ latest_posts:
 ---
 I'm a fourth-year Engineering Science undergraduate student at Natioanl Cheng Kung University.
 
+My major in Engineering Science encompasses courses in Electrical Engineering, Computer Science, and Mechanical Engineering. Aside from the course, I'm also a frequent maker at my university's MakerSpace, I love to implement things by my own!
 
+Currently, I'm a undergraduate intern student in [Dexterous Interaction Lab](lab.tengshanyuan.info) led by [Prof. Shan-Yuan Teng](tengshanyuan.info).
 
-My research in the Human Computer Integration Lab, where I am advised by Pedro Lopes, focuses on sensing, wearables, and designing interfaces that utilize body movements for both input and output by combining gesture sensing with muscle stimulation.
-
-Currently, I'm a research student [專題生] in [Dexterous Interaction Lab](lab.tengshanyuan.info) led by [Prof. Shan-Yuan Teng](tengshanyuan.info).
-
-Aside from engineer stuff, I'd love to play smash bro. and listen Indie music.
+I'd love to play Super Smash bros. and listen Indie music.
