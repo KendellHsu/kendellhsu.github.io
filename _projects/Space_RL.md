@@ -411,4 +411,3 @@ Initially used Matplotlib to plot training curves, and had to rerun the plots mu
 1. [DQN Game Playing - Basic Concepts](https://ithelp.ithome.com.tw/m/articles/10305461)
 2. [Playing Atari with Deep Reinforcement Learning](https://arxiv.org/pdf/1312.5602)
 3. [Paper Reading 1 - Playing Atari with Deep Reinforcement Learning](https://blog.csdn.net/songrotek/article/details/50581011)
-
