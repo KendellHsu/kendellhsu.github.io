@@ -1,58 +1,58 @@
 ---
 layout: page
 title: Space_RL
-description: Reinforcement Learning Game playing
-img: 
+description: DDQN Space Survival Shooter (Reinforcement Learning) 
+img: https://img.youtube.com/vi/0Me6T6cgl3g/0.jpg
 importance: 5
 category: NCKU
 ---
 
-> [GitHub](http://github.com/@KendellHsu/space_rl)
-> [Demo Vedio](https://youtu.be/0Me6T6cgl3g)
+*[[GitHub]](https://github.com/KendellHsu/Space_rl) | [[Demo Video]](https://youtu.be/0Me6T6cgl3g)*
 
 ## A. Problem Overview
-This project aims to train a reinforcement learning agent to play a "Space Survival" game implemented in Pygame. The agent learns to control a spaceship by moving left/right and shooting, avoiding or destroying asteroids while collecting shield and weapon power-ups to extend survival and accumulate higher scores. The agent's state is represented by a 51-dimensional feature vector consisting of the player's own information, the eight nearest asteroids, and the two nearest power-ups. The Double DQN algorithm is used for policy learning. 
+This project aims to train a Reinforcement Learning (RL) agent to play the "Space Survival" game implemented in Pygame. The agent learns to control a spaceship by steering left/right and shooting to avoid or destroy asteroids while collecting shield and weapon power-ups to extend survival time and accumulate higher scores. The agent's state is represented by a 51-dimensional feature vector, comprising the player's status, the eight nearest asteroids, and the two nearest power-ups. The Double DQN (DDQN) algorithm is employed for policy learning.
 
 ## B. Environment Setup
-Hardware: One RTX 3080 and one RTX 4060 used as training machines
-Software: torch(2.7.1), cuda(12.8)
-[Detailed training environment setup](https://hackmd.io/@kendellhsu/RL_train_env)
+- **Hardware:** Training was conducted on workstations equipped with one NVIDIA RTX 3080 and one RTX 4060.
+- **Software:** Torch (2.7.1), CUDA (12.8).
+- [Detailed Training Environment Setup](https://hackmd.io/@kendellhsu/RL_train_env)
 
 ## C. State Design
-The entire state is output as a 1D numpy.array (length 51) and fed into the MLP model. It is divided into three categories: player (5 dimensions), asteroids (8×5 dimensions), and power-ups (2×3 dimensions).
+The entire state is output as a 1D NumPy array (length 51) and fed into the MLP model. It is categorized into three groups: Player (5 dimensions), Asteroids (8×5 dimensions), and Power-ups (2×3 dimensions).
+
 ### 1. Player Information (5 dimensions)
 
-| Dimension         | Range/Normalization | Description                             |
-| ---------- | ------ | ------------------------------ |
-| `px_norm`  | $0,1$  | Player x coordinate / screen width (`WIDTH`)          |
-| `hp_norm`  | $0,1$  | Player health / max health 100                 |
-| `gun_oh_1` | {0,1}  | Gun level one-hot: level 1                |
-| `gun_oh_2` | {0,1}  | Gun level one-hot: level ≥2               |
-| `cd_norm`  | $0,1$  | Remaining shooting cooldown / total cooldown delay (`p.bullet_delay`) |
+| Dimension | Range/Norm | Description |
+| :--- | :--- | :--- |
+| `px_norm` | $0, 1$ | Player x-coordinate / Screen Width (`WIDTH`) |
+| `hp_norm` | $0, 1$ | Player Health / Max Health (100) |
+| `gun_oh_1`| $\{0, 1\}$ | Gun Level One-Hot: Level 1 |
+| `gun_oh_2`| $\{0, 1\}$ | Gun Level One-Hot: Level $\ge 2$ |
+| `cd_norm` | $0, 1$ | Remaining Cooldown / Total Cooldown Delay (`p.bullet_delay`) |
 
-```python!
+```python
 p = self.game.player.sprite
 px_norm   = p.rect.centerx / WIDTH
 hp_norm   = p.health / 100
-gun_oh  = [1 if p.gun == 1 else 0, 1 if p.gun >= 2 else 0]
-cd_norm   = len(p.bullet_timer) / p.bullet_delay  # 0~1****
+gun_oh    = [1 if p.gun == 1 else 0, 1 if p.gun >= 2 else 0]
+cd_norm   = len(p.bullet_timer) / p.bullet_delay  # 0~1
 ```
 
 ### 2. Asteroids (8 asteroids × 5 dimensions, 40 dimensions total)
-- Only the 8 nearest asteroids to the player are included; if fewer than 8 exist, pad with zeros.
-- Each asteroid feature: relative position `(dx, dy)`, velocity `(vx, vy)`, radius `rr`.
-- Velocity normalization upper bounds are `MAX_SPD_X=3` and `MAX_SPD_Y=10` respectively.
+- Only the 8 nearest asteroids to the player are tracked; if fewer than 8 exist, the vector is padded with zeros.
+- **Features:** Relative position `(dx, dy)`, velocity `(vx, vy)`, radius `rr`.
+- **Normalization:** Velocity is normalized by `MAX_SPD_X=3` and `MAX_SPD_Y=10`.
 
-| Dimension   | Range     | Description                     |
-| ---- | ------ | ---------------------- |
-| `dx` | $-1,1$ | (Asteroid x – Player x) / `WIDTH`  |
-| `dy` | $-1,1$ | (Asteroid y – Player y) / `HEIGHT` |
-| `vx` | $-1,1$ | Asteroid horizontal velocity / `MAX_SPD_X`     |
-| `vy` | $0,1$  | Asteroid vertical velocity / `MAX_SPD_Y`     |
-| `rr` | Real     | Asteroid radius (pixels)            |
+| Dimension | Range | Description |
+| :--- | :--- | :--- |
+| `dx` | $[-1, 1]$ | (Asteroid x – Player x) / `WIDTH` |
+| `dy` | $[-1, 1]$ | (Asteroid y – Player y) / `HEIGHT` |
+| `vx` | $[-1, 1]$ | Horizontal velocity / `MAX_SPD_X` |
+| `vy` | $[0, 1]$ | Vertical velocity / `MAX_SPD_Y` |
+| `rr` | Real | Asteroid radius (pixels) |
 
-#### Implementation snippet
-```python!
+#### Implementation Snippet
+```python
 rocks = sorted(self.game.rocks,
                key=lambda r: (r.rect.y-p.rect.y)**2 + (r.rect.x-p.rect.x)**2)[:MAX_ROCK]
 rock_feats = []
@@ -63,7 +63,7 @@ for r in rocks:
     vy = r.speedy / MAX_SPD_Y
     rr = r.radius
     rock_feats += [dx, dy, vx, vy, rr]
-rock_feats += [0.0] * (MAX_ROCK*5 - len(rock_feats)
+rock_feats += [0.0] * (MAX_ROCK*5 - len(rock_feats))
 ```
 
 ### 3. Power-up Information (2 power-ups × 3 dimensions, 6 dimensions total)
@@ -71,13 +71,13 @@ rock_feats += [0.0] * (MAX_ROCK*5 - len(rock_feats)
 - Each power-up feature: relative position `(dx, dy)`, type `tp` (shield `+1` / gun `-1`).
 
 | Dimension   | Range       | Description                       |
-| ---- | -------- | ------------------------ |
+| ----------- | ----------- | --------------------------------- |
 | `dx` | $-1,1$   | (Power-up x – Player x) / `WIDTH`    |
 | `dy` | $-1,1$   | (Power-up y – Player y) / `HEIGHT`   |
 | `tp` | {+1, -1} | `shield` → +1；`gun` → -1 |
 
 
-```python!
+```python
 powers = sorted(self.game.powers,
                 key=lambda pw: abs(pw.rect.y-p.rect.y))[:MAX_POWER]
 power_feats = []
@@ -86,12 +86,12 @@ for pw in powers:
     dy = (pw.rect.centery - p.rect.centery) / HEIGHT
     tp = 1 if pw.type=='shield' else -1
     power_feats += [dx, dy, tp]
-power_feats += [0]*(MAX_POWER*3 - len(power_feats)
+power_feats += [0]*(MAX_POWER*3 - len(power_feats))
 ```
 
 ### 4. Concatenate into Final State Vector
 
-```python!
+```python
 state_vec = np.array(
     [px_norm, hp_norm] + gun_oh + [cd_norm] +
     rock_feats + power_feats,
@@ -103,7 +103,7 @@ Total features: 5 + 40 + 6 = 51 dimensions.
 
 ## D. Reward Design
 Each step (frame) starts with a fixed time penalty and is dynamically adjusted based on game events. Main parameters are defined at the top of Env.py:
-```python!
+```python
 # ---- reward parameters ----
 ALPHA_HIT      = 0.8       # Asteroid destruction reward coefficient
 PSI_MIN        = 0.4       # ψ(hp) = PSI_MIN + (1-PSI_MIN)*ϕ
@@ -115,30 +115,34 @@ COOLDOWN_BONUS = +0.5      # Cooldown completion bonus
 ```
 
 ### 0. Fixed Time Step Penalty
-#### Encourage the agent to achieve high scores quickly
-
-```python!
+Encourage the agent to achieve high scores quickly
+```python
 reward = -0.25
 ```
 
 ### 1. Asteroid Destruction (Hit Bonus)
-#### Condition: `delta_score = self.game.score - score_before`, score change indicates newly destroyed asteroids
-First calculate the current health ratio:
-    $$ \phi = \frac{hp_{\mathrm{after}}}{100}$$
-    $$\psi = \mathrm{\psi_MIN} + (1 - \mathrm{\psi_MIN}) \times \phi$$
-Reward formula:
-    $$reward += \alpha_{HIT}*Δscore*ψ$$
+**Condition:** `delta_score = self.game.score - score_before` (indicates newly destroyed asteroids).
 
-The higher the health, the higher ψ, encouraging the agent to actively shoot when in good health.
+First, calculate the current health ratio $\phi$ and the reward coefficient $\psi$:
 
-```python!
+$$\phi = \frac{hp_{\mathrm{after}}}{100}$$
+
+$$\psi = \mathrm{\psi_{MIN}} + (1 - \mathrm{\psi_{MIN}}) \times \phi$$
+
+**Reward Formula:**
+
+$$\text{reward} += \alpha_{HIT} \times \Delta score \times \psi$$
+
+> The higher the health ($\psi$), the higher the reward, encouraging the agent to shoot actively when in good health.
+
+{% highlight python %}
 delta_score = self.game.score - score_before
 if delta_score:
     ϕ = hp_after / 100
     ψ = PSI_MIN + (1-PSI_MIN)*ϕ
     hit_bonus = ALPHA_HIT * delta_score * ψ
     reward += hit_bonus
-```
+{% endhighlight %}
 
 
 ### 2. Asteroid Collision (Collision Penalty)
@@ -147,10 +151,10 @@ if delta_score:
 - Weight factor: factor = 2 - ϕ (heavier penalty when at low health)
 
 #### Penalty formula:
-    $$ penalty= \beta_{COLL}×r×(2−ϕ)$$
-    $$reward−=penalty$$
+    $$penalty = \beta_{COLL} \times r \times (2-\phi)$$
+    $$reward -= penalty$$
 
-```python!
+```python
 if self.game.is_collided:
     r = hp_before - hp_after
     factor = 2 - (hp_after/100)
@@ -160,13 +164,11 @@ if self.game.is_collided:
 
 ### 3. Power-up Collection (Power-up Bonus)
 #### Condition: `self.game.is_power == True`
-- Shield: If health gain hp_gain>0, then
-
-Higher value when at low health, encouraging timely health recovery.
+- Shield: If health gain `hp_gain>0`, then higher value when at low health, encouraging timely health recovery.
     $$\mathrm{reward} \mathrel{+}= hp\_gain \times \mathrm{\gamma_{SHIELD}} \times \bigl(1 - \phi\bigr)$$
 - Gun upgrade: Fixed reward of 16
 
-```python!
+```python
 if self.game.is_power:
     hp_gain = hp_after - hp_before
     if hp_gain>0:
@@ -181,7 +183,7 @@ if self.game.is_power:
     - Random button press penalty: If pressed but no bullet fired, and not yet penalized, give one `MISS_SHOT_PEN=-1.0`.
     - Cooldown completion reward: When cooldown ends (`in_cooldown==True` and `ready_after==True`), give `+0.5` and reset state.
 
-```python!
+```python
 # Detect fired_now and in_cooldown
 if was_shooting and ready_before:
     self.in_cooldown = True
@@ -199,7 +201,7 @@ if self.in_cooldown and ready_after:
 #### Condition: When the agent attempts to move outside the wall boundaries.
 If `player.rect.left == 0 and action==LEFT` or `player.rect.right==WIDTH and action==RIGHT`, penalize with `-0.5`.
 
-```python!
+```python
 hit_left  = (player.rect.left==0  and action==LEFT)
 hit_right = (player.rect.right==WIDTH and action==RIGHT)
 if hit_left or hit_right:
@@ -208,13 +210,15 @@ if hit_left or hit_right:
 
 
 ## E. Model Architecture
-> The original `template_v2` provided a CNN-based neural network. Since `state` has been changed to pass a 51-dimensional vector, a smaller redesigned model is sufficient.
+The original `template_v2` provided a CNN-based neural network. Since `state` has been changed to pass a 51-dimensional vector, a smaller redesigned model is sufficient.
+
 - Algorithm: Double DQN
 - Network structure: A three-layer fully connected MLP (Multi-Layer Perceptron),
     - Input dimension `input_dim` → 128 → 128 → Output dimension `num_actions`
     - All hidden layers use ReLU activation
     - Final layer outputs Q-values for each action
-```python!
+
+```python
 class MLPDDQN(nn.Module):
     def __init__(self, input_dim, num_actions):
         super().__init__()
@@ -228,12 +232,13 @@ class MLPDDQN(nn.Module):
     def forward(self, x):
         return self.net(x)
 ```
-- Output: Returns a tensor of shape `(128, num_actions)`, representing Q-values for each state-action pair, used by ε-greedy strategy to select actions.
+- **Output:** Returns a tensor of shape `(128, num_actions)`, representing Q-values for each state-action pair, used by ε-greedy strategy to select actions.
 
 ## F. Training Process
 ### 0. Hyperparameters
+
 | Hyperparameter                   | Value    |
-| -------------------- | ----- |
+| --------------------------------- | -------- |
 | `num_episodes`       | 4000  |
 | `batch_size`         | 64    |
 | `gamma` (discount factor)       | 0.99  |
@@ -245,7 +250,7 @@ class MLPDDQN(nn.Module):
 | `target_update_freq` | 2000  |
 
 ### 1. Initialization
-```python!
+```python
 env          = SpaceShipEnv()
 state_dim    = env._extract_state().shape[0]
 num_actions  = len(env.action_space)
@@ -259,8 +264,10 @@ epsilon      = epsilon_start
 total_steps  = 0
 ```
 
-### 2. Episode Loop (`for episode in range(start_episode, 4000`)
+### 2. Episode Loop 
+*(`for episode in range(start_episode, 4000`)*
 Based on template_v2, the main modification is changing from DQN to DDQN model
+
 ```diff
 --- Original: DQN 
 +++ Modified: DDQN 
@@ -271,6 +278,7 @@ Based on template_v2, the main modification is changing from DQN to DDQN model
 + next_q_values  = target_net(next_states).gather(1, next_actions).squeeze(1)
 + target_q       = rewards + γ * next_q_values * (1 - dones)
 ```
+
 - DQN: target_q = r + γ·maxₐ Qₜₐᵣ₍ₙₑₜ₎(s′, a)
 - DDQN:
     1. Select action a* = arg maxₐ Qₚₒₗᵢcᵧ( s′, a )
@@ -278,17 +286,29 @@ Based on template_v2, the main modification is changing from DQN to DDQN model
     3. target_q = r + γ·Qₜₐᵣ₍ₙₑₜ₎( s′, a* )
 
 ## G. Result Presentation
-> [Demo vedio](https://youtu.be/0Me6T6cgl3g)
+[Demo vedio](https://youtu.be/0Me6T6cgl3g)
 
 Using `v2.4.5` as the main version for analysis
 
 ### Score Distribution Charts
-![image](https://hackmd.io/_uploads/B1CvANnNeg.png)
-![image](https://hackmd.io/_uploads/rJT_RN2Vxg.png)
+<div class="row"> 
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="https://hackmd.io/_uploads/B1CvANnNeg.png" title="Score Distribution Chart 1" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="https://hackmd.io/_uploads/rJT_RN2Vxg.png" title="Score Distribution Chart 2" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
 
 ### Reward Distribution Charts
-![image](https://hackmd.io/_uploads/HymoCE3Vex.png)
-![image](https://hackmd.io/_uploads/HkUaRNnNxe.png)
+<div class="row"> 
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="https://hackmd.io/_uploads/HymoCE3Vex.png" title="Reward Distribution Chart 1" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="https://hackmd.io/_uploads/HkUaRNnNxe.png" title="Reward Distribution Chart 2" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
 
 Using `checkpoint_ep1800` from `v2.4.5` for analysis
 
@@ -339,16 +359,18 @@ Call `_extract_state()` in `step()` to extract environment information
 
 ### v2.4
 - Modification:
-    -    Readjusted reward weights: `α_HIT 1.4→1.8`、`β_coll 1.2→1.4`、`time_penalty −0.3→0.4`
-    -    Changed asteroid radius to discrete input
-    -    Optimized Replay Buffer performance
--    Performance: Training curve smoother, but highest score still did not break existing upper limit.
+    - Readjusted reward weights: `α_HIT 1.4→1.8`、`β_coll 1.2→1.4`、`time_penalty −0.3→0.4`
+    - Changed asteroid radius to discrete input
+    - Optimized Replay Buffer performance
+- Performance: Training curve smoother, but highest score still did not break existing upper limit.
+
 ### v2.4.3
 Modification:
 Integrated TensorBoard for real-time monitoring of loss and reward curves
 Learning rate adjustment: 1e-4→5e-5；ε decay: 0.999→0.997
 All rewards multiplied by 0.6
 Performance: Average score broke 2000 points, occasionally reaching 10000 points in single runs; but power-up collection strategy remained unstable.
+
 ### v2.4.4
 - Modification:
     - Found that excessive reward differences affected learning, switched to segmented time_penalty:
@@ -364,14 +386,15 @@ Performance: Average score broke 2000 points, occasionally reaching 10000 points
 
 ### v2.4.5 (Best Version)
 - Modification:
-    -    Reduced asteroid feature dimensions, no longer using one-hot for each asteroid, only input radius rr
-    -    Added "wall-hit penalty" for incorrect dodging at screen edges
-    -    Fixed time_penalty = −0.25
+    - Reduced asteroid feature dimensions, no longer using one-hot for each asteroid, only input radius rr
+    - Added "wall-hit penalty" for incorrect dodging at screen edges
+    - Fixed time_penalty = −0.25
+- Performance: Significantly increased probability of single-run breakthrough of 10000 points, but low-score situations still occur occasionally, suspected to be inherent game difficulty limitation
 
--    Performance: Significantly increased probability of single-run breakthrough of 10000 points, but low-score situations still occur occasionally, suspected to be inherent game difficulty limitation
 ### v2.4.6
 - Modification: Expanded action space to 6 actions (allowing simultaneous movement and shooting)
 - Performance: Converged to 2000–3000 points but unable to improve further
+
 ### v2.4.7
 - Modification: Replaced original Replay Buffer with Prioritized Replay Buffer
 - Performance: Score initially rose above 1000 points, then declined and fluctuated in the 1000–2000 point range
