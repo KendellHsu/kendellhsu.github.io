@@ -388,9 +388,14 @@ ninja.data = [{
             },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
           title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
           description: "",
-          section: "News",},{id: "projects-handmade-bar-stool",
-          title: 'Handmade Bar Stool',
+          section: "News",},{id: "projects-example",
+          title: 'Example',
           description: "a bar stool made with pine wood",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/Example/";
+            },},{id: "projects-handmade-bar-stool",
+          title: 'Handmade Bar Stool',
+          description: "a woodworking practice with big wook processing",
           section: "Projects",handler: () => {
               window.location.href = "/projects/Handmade%20Bar%20Stool/";
             },},{id: "projects-lightmr",
