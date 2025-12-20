@@ -3,7 +3,7 @@ layout: page
 title: Space_RL
 description: DDQN Space Survival Shooter (Reinforcement Learning) 
 img: https://img.youtube.com/vi/0Me6T6cgl3g/0.jpg
-importance: 5
+importance: 4
 category: NCKU
 ---
 

@@ -3,7 +3,7 @@ layout: page
 title: Handmade Bar Stool
 description: a woodworking practice with big wook processing
 img: assets/img/Handmade Bar Stool/Wood Bar Stool_Cover.png
-importance: 3
+importance: 5
 category: maker
 ---
 
