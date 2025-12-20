@@ -6,7 +6,7 @@ subtitle:
 
 profile:
   align: left
-  image: prof_pic.jpeg
+  image: prof_pic.JPEG
   image_circular: true # crops the image to make it circular
   more_info: >
     <a href="assets/pdf/CV.pdf">CV</a> / <a href="mailto:kendellhsu@gmail.com">Email</a> / <a href="https://www.linkedin.com/in/kendell-hsu-a9a192343/">LinkedIn</a>
