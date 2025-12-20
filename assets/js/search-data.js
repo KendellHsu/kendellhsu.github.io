@@ -388,19 +388,14 @@ ninja.data = [{
             },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
           title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
           description: "",
-          section: "News",},{id: "projects-example",
-          title: 'Example',
-          description: "a bar stool made with pine wood",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/Example/";
-            },},{id: "projects-handmade-bar-stool",
+          section: "News",},{id: "projects-handmade-bar-stool",
           title: 'Handmade Bar Stool',
           description: "a woodworking practice with big wook processing",
           section: "Projects",handler: () => {
               window.location.href = "/projects/Handmade%20Bar%20Stool/";
             },},{id: "projects-lightmr",
           title: 'LightMR',
-          description: "",
+          description: "My senior project",
           section: "Projects",handler: () => {
               window.location.href = "/projects/LightMR/";
             },},{id: "projects-lightpov",
@@ -408,9 +403,14 @@ ninja.data = [{
           description: "Wireless IoT LED Performance System",
           section: "Projects",handler: () => {
               window.location.href = "/projects/LightPOV/";
+            },},{id: "projects-space-rl",
+          title: 'Space_RL',
+          description: "Reinforcement Learning Game playing",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/Space_RL/";
             },},{id: "projects-tatsujin",
           title: 'Tatsujin',
-          description: "A Tatsujin (Taiko no Tatsujin) clone game implemented on PYNQ-Z2 FPGA with LED matrix display",
+          description: "A Taiko no Tatsujin clone game implemented on PYNQ-Z2 FPGA with LED matrix display",
           section: "Projects",handler: () => {
               window.location.href = "/projects/Tatsujin/";
             },},{
