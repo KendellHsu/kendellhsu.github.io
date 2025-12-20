@@ -26,7 +26,7 @@ latest_posts:
 ---
 I'm a fourth-year Engineering Science undergraduate student at Natioanl Cheng Kung University.
 
-My major in Engineering Science encompasses courses in Electrical Engineering, Computer Science, and Mechanical Engineering. Aside from the course, I'm also a frequent maker at my university's MakerSpace, I love to implement things by my own!
+My major in Engineering Science encompasses courses in Electrical Engineering, Computer Science, and Mechanical Engineering. Aside from the course, I'm also a frequent maker at my university's MakerSpace. I love to implement things by my own!
 
 Currently, I'm a undergraduate intern student in [Dexterous Interaction Lab](lab.tengshanyuan.info) led by [Prof. Shan-Yuan Teng](tengshanyuan.info).
 

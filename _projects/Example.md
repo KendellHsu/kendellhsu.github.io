@@ -1,13 +1,12 @@
 ---
 layout: page
-title: Tasujin
-description: Implemented a Tatsujin game clone on a PYNQ-Z2 FPGA using an LED matrix and Verilog.
-img: assets/img/Tatsujin/Tatsujin_cover.png
-importance: 2
-category: school
+title: Example
+description: a bar stool made with pine wood
+img: assets/img/Handmade Bar Stool/Wood Bar Stool_Cover.png
+importance: 9
 ---
 
-Every project has a beautiful feature showcase page.
+very project has a beautiful feature showcase page.
 It's easy to include images in a flexible 3-column grid format.
 Make your photos 1/3, 2/3, or full width.
 

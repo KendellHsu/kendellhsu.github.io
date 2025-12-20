@@ -7,5 +7,3 @@ importance: 4
 redirect: assets/pdf/LightMR.pdf
 category: NCKU
 ---
-
-## Show the process 
