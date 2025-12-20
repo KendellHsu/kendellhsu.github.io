@@ -408,9 +408,9 @@ ninja.data = [{
           description: "Wireless IoT LED Performance System",
           section: "Projects",handler: () => {
               window.location.href = "/projects/LightPOV/";
-            },},{id: "projects-tasujin",
-          title: 'Tasujin',
-          description: "Implemented a Tatsujin game clone on a PYNQ-Z2 FPGA using an LED matrix and Verilog.",
+            },},{id: "projects-tatsujin",
+          title: 'Tatsujin',
+          description: "A Tatsujin (Taiko no Tatsujin) clone game implemented on PYNQ-Z2 FPGA with LED matrix display",
           section: "Projects",handler: () => {
               window.location.href = "/projects/Tatsujin/";
             },},{
