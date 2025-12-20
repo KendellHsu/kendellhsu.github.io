@@ -405,7 +405,7 @@ ninja.data = [{
               window.location.href = "/projects/LightPOV/";
             },},{id: "projects-space-rl",
           title: 'Space_RL',
-          description: "Reinforcement Learning Game playing",
+          description: "DDQN Space Survival Shooter (Reinforcement Learning)",
           section: "Projects",handler: () => {
               window.location.href = "/projects/Space_RL/";
             },},{id: "projects-tatsujin",
