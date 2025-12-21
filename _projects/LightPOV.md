@@ -39,6 +39,18 @@ We are designing  Version 4 Now !!
 
 <div class="row"> 
     <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/LightPOV/prototype_front.jpeg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/LightPOV/prototype_back.jpeg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    PCB prototype
+</div>
+
+<div class="row"> 
+    <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/LightPOV/s_pcb_version1.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
@@ -48,6 +60,7 @@ We are designing  Version 4 Now !!
 <div class="caption">
     PCB Version 1
 </div>
+
 In version 2, we rearranged the layout of the PCB to decrease the soldering difficulty and switched from 18650 battery to 14500 battery to reduce the tube radius.
 
 <div class="row"> 
@@ -55,7 +68,10 @@ In version 2, we rearranged the layout of the PCB to decrease the soldering diff
         {% include figure.liquid loading="eager" path="assets/img/LightPOV/s_version2.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/LightPOV/s_pcb_soldering.png" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/LightPOV/Version2_front.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/LightPOV/Version2_back.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -239,6 +255,17 @@ Light Ball uses a semi-transparent PE medicine container for better light effect
 > Stay Tune!! The project is updating!!!
 > New hardware、PCB、Effect Editing GUI is coming!
 
+Replace the module with mounted electronics to reduce the core radius.
+
+<div class="row"> 
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/LightPOV/Version3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    PCB Version 3
+</div>
+
 <div class="row"> 
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/LightPOV/new_hardware.png" title="example image" class="img-fluid rounded z-depth-1" %}
@@ -247,3 +274,5 @@ Light Ball uses a semi-transparent PE medicine container for better light effect
 <div class="caption">
     New Device Design in Fusion360
 </div>
+
+
