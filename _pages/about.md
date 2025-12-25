@@ -28,6 +28,6 @@ I'm a fourth-year Engineering Science undergraduate student at Natioanl Cheng Ku
 
 My major in Engineering Science encompasses courses in Electrical Engineering, Computer Science, and Mechanical Engineering. In addition to my coursework, I'm also a frequent maker at my university's MakerSpace. I love to build things on my own!
 
-Currently, I'm a undergraduate intern student in [Dexterous Interaction Lab](lab.tengshanyuan.info) led by [Prof. Shan-Yuan Teng](tengshanyuan.info).
+Currently, I'm a undergraduate intern student in [Dexterous Interaction Lab](https://lab.tengshanyuan.info) led by [Prof. Shan-Yuan Teng](https://tengshanyuan.info).
 
 I'd love to play Super Smash bros. and listen Indie music.
