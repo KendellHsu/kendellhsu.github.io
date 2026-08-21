@@ -377,16 +377,16 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "news-2025-08-i-join-the-dexlab-and-start-working-with-shan-yuan",
-          title: '2025.08 I join the DexLab and start working with Shan-Yuan',
+            },},{id: "news-i-attended-taichi-25-which-expand-my-view-so-much-and-also-get-to-know-shan-yuan",
+          title: 'I attended TAICHI’25. Which expand my view so much and also get to...',
           description: "",
-          section: "News",},{id: "news-a-long-announcement-with-details",
-          title: 'A long announcement with details',
+          section: "News",},{id: "news-announcement-2",
+          title: 'Announcement_2',
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/announcement_2/";
-            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
-          title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
+            },},{id: "news-the-demo-i-submit-to-uist2026-is-accepted-look-forward-to-my-first-top-conference",
+          title: 'The demo I submit to UIST2026 is accepted. Look forward to my first...',
           description: "",
           section: "News",},{id: "projects-handmade-bar-stool",
           title: 'Handmade Bar Stool',
