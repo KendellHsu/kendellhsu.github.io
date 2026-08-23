@@ -24,10 +24,10 @@ latest_posts:
   scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
   limit: 5 # leave blank to include all the blog posts
 ---
-I'm a fifth-year Engineering Science undergraduate student at Natioanl Cheng Kung University(NCKU).
+I'm a fifth-year Engineering Science undergraduate student at National Cheng Kung University(NCKU).
 
 My major in Engineering Science is a blend of Electrical Engineering, Computer Science, and Mechanical Engineering. In addition to my coursework,  I'm an active maker at my university's MakerSpace, which fuels my passion for innovation, and I absolutely love creating and building things on my own!
 
-Currently, I'm a undergrad researcher student in [Dexterous Interaction Lab](https://lab.tengshanyuan.info) led by [Prof. Shan-Yuan Teng](https://tengshanyuan.info).
+Currently, I'm an undergrad researcher in [dexterous interaction lab](https://lab.tengshanyuan.info) led by [Prof. Shan-Yuan Teng](https://tengshanyuan.info).
 
-I'd love to play Super Smash bros. and listen Indie music.
+I'd love to play Super Smash bros. and listen indie music.
